@@ -24,7 +24,7 @@ function App() {
     /*const newPurchase = { purchase: 'Pneus Auto', amount: '150,00', date: '04-06-2019' };
     setPurchase(oldPurchases => [...oldPurchases, newPurchase]);*/
     event.preventDefault();
-    console.log({ item, amount, date });
+    setPurchase(oldPurchases => [...oldPurchases, { item, amount, date }]);
   }
 
   return (
@@ -44,7 +44,7 @@ function App() {
       <form onSubmit={ addPurchase }>
         <label>
           Purchase:
-          <input type="text" name="item" value={item} onChange={ e => setPurchase(e.target.value) }/>
+          <input type="text" name="item" value={item} onChange={ e => setItem(e.target.value) }/>
         </label>
         Amount:
         <input type="text" name="amount" value={amount} onChange={ e => setAmount(e.target.value) } />
