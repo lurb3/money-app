@@ -15,22 +15,28 @@ function App() {
   const [date, setDate] = useState('');
   
   const [purchases, setPurchases] = useState([
-    { item: 'Padaria Pastelaria', amount: 1, date: '20-11-2019' },
-    { item: 'Restaurante', amount: 2, date: '17-11-2019' },
-    { item: 'Mercearia Supermercado', amount: 3, date: '20-11-2019' },
   ]);
 
   const addPurchase = (event) => { // Add a new purchase to purchases array
     event.preventDefault();
+
     if(item !== '' && amount !== '' && date !== '') {
-      setPurchases(oldPurchases => [...oldPurchases, { item, amount, date }]);
-      console.log(purchases);
       let calcBudget = budget;
-      {purchases.map(purchase => (
-        calcBudget -= amount,
-        setBudget(calcBudget)
-      ))}
+      const data = { item, amount, date };
+
+      setPurchases(oldPurchases => [...oldPurchases, { data }]);
+
+        calcBudget -= amount;
+        setBudget(calcBudget);
+
+        console.log(data);
+
+        fetch('https://www.gustavomonteiro.pt/apis/money_app/savePurchase.php', {
+          method: 'POST',
+          body: data,
+        });
     }
+
   }
 
   return (
