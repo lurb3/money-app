@@ -5,9 +5,9 @@
 	$currentDate = date("Y-m-d");
 	
 	$purchase = json_decode(file_get_contents('php://input'), true);
-    $purchaseItem = 'teste';//$purchase['item'];
-	$purchaseAmount = '123';//$purchase['amount'];
-	$purchaseDate = 'teste';//$purchase['date'];
+    $purchaseItem = $purchase['item'];
+	$purchaseAmount = $purchase['amount'];
+	$purchaseDate = $purchase['date'];
 	
 	//$sql = "SELECT * FROM purchases WHERE email LIKE '$userEmailTemp'";
 	//$result = $conn->query($sql);

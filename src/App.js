@@ -33,7 +33,7 @@ function App() {
 
         fetch('https://www.gustavomonteiro.pt/apis/money_app/savePurchase.php', {
           method: 'POST',
-          body: data,
+          body: JSON.stringify(data),
         });
     }
 
