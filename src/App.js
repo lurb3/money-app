@@ -24,7 +24,7 @@ function App() {
       let calcBudget = budget;
       const data = { item, amount, date };
 
-      setPurchases(oldPurchases => [...oldPurchases, { data }]);
+      setPurchases(oldPurchases => [...oldPurchases, data]);
 
         calcBudget -= amount;
         setBudget(calcBudget);
