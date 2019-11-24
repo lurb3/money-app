@@ -8,23 +8,29 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-  const [budget, setBudget] = useState('109,60');
+  const [budget, setBudget] = useState(109);
 
   const [item, setItem] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
   
-  const [purchases, setPurchase] = useState([
-    { purchase: 'Padaria Pastelaria', amount: '2,40', date: '20-11-2019' },
-    { purchase: 'Restaurante', amount: '15,00', date: '17-11-2019' },
-    { purchase: 'Mercearia Supermercado', amount: '80,00', date: '20-11-2019' },
+  const [purchases, setPurchases] = useState([
+    { item: 'Padaria Pastelaria', amount: 1, date: '20-11-2019' },
+    { item: 'Restaurante', amount: 2, date: '17-11-2019' },
+    { item: 'Mercearia Supermercado', amount: 3, date: '20-11-2019' },
   ]);
 
   const addPurchase = (event) => { // Add a new purchase to purchases array
-    /*const newPurchase = { purchase: 'Pneus Auto', amount: '150,00', date: '04-06-2019' };
-    setPurchase(oldPurchases => [...oldPurchases, newPurchase]);*/
     event.preventDefault();
-    setPurchase(oldPurchases => [...oldPurchases, { item, amount, date }]);
+    if(item !== '' && amount !== '' && date !== '') {
+      setPurchases(oldPurchases => [...oldPurchases, { item, amount, date }]);
+      console.log(purchases);
+      let calcBudget = budget;
+      {purchases.map(purchase => (
+        calcBudget -= amount,
+        setBudget(calcBudget)
+      ))}
+    }
   }
 
   return (
@@ -38,14 +44,12 @@ function App() {
       </div>
 
       {purchases.map(purchase => (
-        <Movements purchase={ purchase.purchase } amount={ purchase.amount } date={ purchase.date }/>
+        <Movements item={ purchase.item } amount={ purchase.amount } date={ purchase.date }/>
       ))}
 
       <form onSubmit={ addPurchase }>
-        <label>
           Purchase:
-          <input type="text" name="item" value={item} onChange={ e => setItem(e.target.value) }/>
-        </label>
+          <input type="text" name="purchase" value={item} onChange={ e => setItem(e.target.value) }/>
         Amount:
         <input type="text" name="amount" value={amount} onChange={ e => setAmount(e.target.value) } />
         Date:

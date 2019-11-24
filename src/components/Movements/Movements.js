@@ -1,12 +1,12 @@
 import React from 'react';
 import './Movements.scss'
 
-const Movements = ({ purchase, amount, date }) => {
+const Movements = ({ item, amount, date }) => {
     return (
         <div className="Movements">
             <div className="row">
                 <div className="col-7 text-light text-left">
-                    <strong>Compra: { purchase }</strong>
+                    <strong>Compra: { item }</strong>
                 </div>
                 <div className="col-5 text-right amount">
                     - { amount } €
