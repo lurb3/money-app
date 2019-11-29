@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Components
 import Movements from './components/Movements/Movements.js';
@@ -16,6 +16,25 @@ function App() {
   
   const [purchases, setPurchases] = useState([
   ]);
+
+  useEffect(() => {
+    fetch('https://www.gustavomonteiro.pt/apis/money_app/getPurchases.php', {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      }
+    })
+      .then(res => {
+        if (res.ok) {
+          console.log(res.json());
+        } else {
+          throw Error(res.statusText);
+        }
+      })
+      .then(json => {
+      });
+  }, []);
 
   const addPurchase = (event) => { // Add a new purchase to purchases array
     event.preventDefault();
