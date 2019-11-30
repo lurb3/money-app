@@ -1,5 +1,5 @@
 <?php
-	header('Access-Control-Allow-Origin: *', 'Access-Control-Allow-Headers: *', 'Access-Control-Allow-Methods: POST, GET, OPTIONS');
+	header('Access-Control-Allow-Origin: *', 'Access-Control-Allow-Headers: Content-Type');
     $servername = "gustavomonteiro.pt";
     $username = "gustavom_budget";
     $password = "(xyK#pU?jTkR";

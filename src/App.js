@@ -18,21 +18,13 @@ function App() {
   ]);
 
   useEffect(() => {
-    fetch('https://www.gustavomonteiro.pt/apis/money_app/getPurchases.php', {
+    fetch('https://gustavomonteiro.pt/apis/money_app/getPurchases.php', {
       method: 'GET',
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      }
     })
-      .then(res => {
-        if (res.ok) {
-          console.log(res.json());
-        } else {
-          throw Error(res.statusText);
-        }
-      })
+      .then(response => response.json())
       .then(json => {
+        console.log(json);
+        setPurchases(json);
       });
   }, []);
 
