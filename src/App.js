@@ -18,7 +18,8 @@ function App() {
   ]);
 
   useEffect(() => {
-    fetch('https://gustavomonteiro.pt/apis/money_app/getPurchases.php', {
+    let userid = 1;
+    fetch('https://gustavomonteiro.pt/apis/money_app/getPurchases.php?userid=' + userid + '', {
       method: 'GET',
     })
       .then(response => response.json())
@@ -41,6 +42,8 @@ function App() {
         setBudget(calcBudget);
 
         console.log(data);
+
+        data['userid'] = 1;
 
         fetch('https://www.gustavomonteiro.pt/apis/money_app/savePurchase.php', {
           method: 'POST',

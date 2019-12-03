@@ -2,9 +2,8 @@
 
 	require_once('conn.php');
 
-	//$userid = json_decode(file_get_contents('php://input'), true);
-	//$useridTemp = $userid['userid'];
-	$sql = "SELECT * from purchases";
+	$useridTemp = $_GET['userid'];
+	$sql = "SELECT * FROM purchases WHERE userid LIKE $useridTemp";
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0) {
