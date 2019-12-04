@@ -8,41 +8,45 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-  const [budget, setBudget] = useState(109);
+  const [budget, setBudget] = useState();
 
   const [item, setItem] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
   
-  const [purchases, setPurchases] = useState([
-  ]);
+  const [purchases, setPurchases] = useState([]);
 
   useEffect(() => {
     let userid = 1;
+
     fetch('https://gustavomonteiro.pt/apis/money_app/getPurchases.php?userid=' + userid + '', {
       method: 'GET',
     })
       .then(response => response.json())
       .then(json => {
-        console.log(json);
         setPurchases(json);
       });
+
+      fetch('https://gustavomonteiro.pt/apis/money_app/getBudget.php?userid=' + userid + '', {
+        method: 'GET',
+      })
+        .then(response => response.json())
+        .then(json => {
+          setBudget(json[0].totalBudget)
+        });
+
   }, []);
 
   const addPurchase = (event) => { // Add a new purchase to purchases array
+    let calcBudget = budget;
+    let userid = 1;
+
     event.preventDefault();
 
     if(item !== '' && amount !== '' && date !== '') {
-      let calcBudget = budget;
       const data = { item, amount, date };
 
       setPurchases(oldPurchases => [...oldPurchases, data]);
-
-        calcBudget -= amount;
-        setBudget(calcBudget);
-
-        console.log(data);
-
         data['userid'] = 1;
 
         fetch('https://www.gustavomonteiro.pt/apis/money_app/savePurchase.php', {
@@ -51,7 +55,21 @@ function App() {
         });
 
         setItem(''); setAmount(''); setDate('');
+
+        calcBudget -= amount;
+        setBudget(calcBudget);
+
+        const dataBudget = {totalBudget: calcBudget, userid: userid};
+
+        fetch('https://www.gustavomonteiro.pt/apis/money_app/saveBudget.php', {
+          method: 'POST',
+          body: JSON.stringify(dataBudget),
+        });
+
     }
+
+
+
 
   }
 
