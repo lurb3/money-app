@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 // Components
 import Movements from './components/Movements/Movements.js';
-
+import Signin from './components/Signin/Signin.js';
 // Styling
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -73,32 +74,40 @@ function App() {
 
   }
 
-  return (
-  <div className="appContainer">
-   <div className="container p-0">
-      <div className="row">
-        <div className="col-12 text-center text-light">
-          <h1>Total Budget</h1>
-          <p>{ budget }</p>
-        </div>
-      </div>
+	return (
+		<Router>
+			<Switch>
+				<Route path="/signin">
+					<Signin />
+				</Route>
+				<Route path="/money-app">
+					<div className="appContainer">
+						<div className="container p-0">
+							<div className="row">
+								<div className="col-12 text-center text-light">
+									<h1>Total Budget</h1>
+									<p>{ budget }</p>
+								</div>
+							</div>
 
-      {purchases.map(purchase => (
-        <Movements item={ purchase.item } amount={ purchase.amount } date={ purchase.date }/>
-      ))}
+							{purchases.map(purchase => (
+								<Movements item={ purchase.item } amount={ purchase.amount } date={ purchase.date }/>
+							))}
 
-      <form onSubmit={ addPurchase }>
-          Purchase:
-          <input type="text" name="purchase" value={item} onChange={ e => setItem(e.target.value) }/>
-        Amount:
-        <input type="text" name="amount" value={amount} onChange={ e => setAmount(e.target.value) } />
-        Date:
-        <input type="text" name="date" value={date} onChange={ e => setDate(e.target.value) } />
-        <input type="submit" value="Enter" />
-      </form>
-
-    </div>
-  </div>
+							<form onSubmit={ addPurchase }>
+								Purchase:
+								<input type="text" name="purchase" value={item} onChange={ e => setItem(e.target.value) }/>
+								Amount:
+								<input type="text" name="amount" value={amount} onChange={ e => setAmount(e.target.value) } />
+								Date:
+								<input type="text" name="date" value={date} onChange={ e => setDate(e.target.value) } />
+								<input type="submit" value="Enter" />
+							</form>
+						</div>
+					</div>
+				</Route>
+			</Switch>
+		</Router>
   );
 }
 
