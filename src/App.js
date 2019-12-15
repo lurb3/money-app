@@ -6,7 +6,7 @@ import Movements from './components/Movements/Movements.js';
 import Signin from './components/Signin/Signin.js';
 // Styling
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import './App.scss';
 
 function App() {
   const [budget, setBudget] = useState();
@@ -68,10 +68,6 @@ function App() {
         });
 
     }
-
-
-
-
   }
 
 	return (
