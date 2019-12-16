@@ -9,7 +9,10 @@ const Signin = () => {
     return (
         <div className="Signin">
 			<div className="row">
-				<Form test={ test, 'submit' }/>
+				<Form 
+					inputs = { test }
+					submitButton = { 'Login' }
+				/>
 			</div>
             <div className="row">
                 <h1>Signin Component</h1>

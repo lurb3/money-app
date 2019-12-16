@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Form = ( { test, submit } ) => {
+const Form = ( { inputs, submitButton } ) => {
     return (
         <div className="Form">
 			<form>
 				{
-					test.map(function(input){
+					inputs.map(function(input){
 						return (
 							<div>
 								<div>{ input }</div>
@@ -16,7 +16,7 @@ const Form = ( { test, submit } ) => {
 				}
 
 				<div>
-					<input type="submit" value = { test[2] } />
+					<input type="submit" value = { submitButton } />
 				</div>
 			</form>
         </div>
