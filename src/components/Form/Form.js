@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Form = ( { inputs, submitButton } ) => {
+const Form = ( { inputs, submitButton, onSubmit, inputHandler }) => {
     return (
         <div className="Form">
 			<form>
@@ -9,14 +9,14 @@ const Form = ( { inputs, submitButton } ) => {
 						return (
 							<div>
 								<div>{ input }</div>
-								<input type = "text" name = { input } value = { input } />
+								<input type = "text" name = { input } onChange = { inputHandler }/>
 							</div>
 						);
 					})
 				}
 
 				<div>
-					<input type="submit" value = { submitButton } />
+					<input type="submit" value = { submitButton } onClick = { onSubmit }/>
 				</div>
 			</form>
         </div>
