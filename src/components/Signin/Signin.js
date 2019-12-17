@@ -10,12 +10,11 @@ const Signin = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log("button clicked");
+		console.log(formFields);
 	}
 
 	const handleInputChange = (e) => {
-		formFields[`${e.target.name}`] = e.target.value;
-		console.log(formFields);
+		formFields[e.target.name] = e.target.value;
 	}
 
     return (
@@ -23,7 +22,7 @@ const Signin = () => {
 			<div className="row">
 				<Form 
 					inputs = { inputFields }
-					submitButton = { 'Login' }
+					submitText = { 'Login' }
 					onSubmit = { handleSubmit }
 					inputHandler = { handleInputChange }
 				/>

@@ -4,11 +4,17 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 // Components
 import Movements from './components/Movements/Movements.js';
 import Signin from './components/Signin/Signin.js';
+import Form from './components/Form/Form.js';
+
 // Styling
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 
 function App() {
+
+	const inputFields = [ 'Purchase', 'Amount', 'Date' ];
+	const formFields = {};
+
   const [budget, setBudget] = useState();
 
   const [item, setItem] = useState('');
@@ -38,11 +44,10 @@ function App() {
 
   }, []);
 
-  const addPurchase = (event) => { // Add a new purchase to purchases array
+  const addPurchase = () => { // Add a new purchase to purchases array
+	console.log("clicked");
     let calcBudget = budget;
     let userid = 1;
-
-    event.preventDefault();
 
     if(item !== '' && amount !== '' && date !== '') {
       const data = { item, amount, date };
@@ -55,8 +60,6 @@ function App() {
           body: JSON.stringify(data),
         });
 
-        setItem(''); setAmount(''); setDate('');
-
         calcBudget -= amount;
         setBudget(calcBudget);
 
@@ -66,9 +69,23 @@ function App() {
           method: 'POST',
           body: JSON.stringify(dataBudget),
         });
-
     }
   }
+
+  	const handleInputChange = (e) => {
+		formFields[e.target.name] = e.target.value;
+	}
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setAmount(formFields.Amount);
+		setItem(formFields.Purchase);
+		setDate(formFields.Date);
+	}
+
+	useEffect(() => {
+		addPurchase();
+	}, [date]);
 
 	return (
 		<Router>
@@ -90,15 +107,13 @@ function App() {
 								<Movements item={ purchase.item } amount={ purchase.amount } date={ purchase.date }/>
 							))}
 
-							<form onSubmit={ addPurchase }>
-								Purchase:
-								<input type="text" name="purchase" value={item} onChange={ e => setItem(e.target.value) }/>
-								Amount:
-								<input type="text" name="amount" value={amount} onChange={ e => setAmount(e.target.value) } />
-								Date:
-								<input type="text" name="date" value={date} onChange={ e => setDate(e.target.value) } />
-								<input type="submit" value="Enter" />
-							</form>
+							<Form 
+								inputs = { inputFields }
+								submitText = { 'Add New Item' }
+								onSubmit = { handleSubmit }
+								inputHandler = { handleInputChange }
+							/>
+
 						</div>
 					</div>
 				</Route>
