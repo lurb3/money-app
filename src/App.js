@@ -109,6 +109,7 @@ function App() {
 
 							<Form 
 								inputs = { inputFields }
+								inputType = { ['text', 'number', 'date'] }
 								submitText = { 'Add New Item' }
 								onSubmit = { handleSubmit }
 								inputHandler = { handleInputChange }

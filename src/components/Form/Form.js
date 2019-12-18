@@ -1,15 +1,15 @@
 import React from 'react';
 
-const Form = ( { inputs, submitText, onSubmit, inputHandler }) => {
+const Form = ( { inputType, inputs, submitText, onSubmit, inputHandler }) => {
     return (
         <div className="Form">
 			<form>
 				{
-					inputs.map(function(input){
+					inputs.map(function(input, index){
 						return (
 							<div>
 								<div>{ input }</div>
-								<input type = "text" name = { input } onChange = { inputHandler }/>
+								<input type = { inputType[index] } name = { input } onChange = { inputHandler }/>
 							</div>
 						);
 					})

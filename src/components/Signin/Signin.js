@@ -21,7 +21,9 @@ const Signin = () => {
         <div className="Signin">
 			<div className="row">
 				<Form 
+				{...console.log(inputFields)}
 					inputs = { inputFields }
+					inputType = { ['Text', 'Password'] }
 					submitText = { 'Login' }
 					onSubmit = { handleSubmit }
 					inputHandler = { handleInputChange }
