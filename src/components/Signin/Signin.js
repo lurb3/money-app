@@ -18,10 +18,10 @@ const Signin = () => {
 	}
 
     return (
-        <div className="Signin">
-			<div className="row">
-				<Form 
-				{...console.log(inputFields)}
+        <div className="sign-in container">
+			<div className="row sign-in-form">
+				<h3>LOGIN TO MONEY APP</h3>
+				<Form
 					inputs = { inputFields }
 					inputType = { ['Text', 'Password'] }
 					submitText = { 'Login' }
@@ -29,9 +29,6 @@ const Signin = () => {
 					inputHandler = { handleInputChange }
 				/>
 			</div>
-            <div className="row">
-                <h1>Signin Component</h1>
-            </div>
         </div>
     );
 };
