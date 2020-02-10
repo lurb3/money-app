@@ -1,12 +1,23 @@
-.Movements {
-    border-top:1px solid #555;
-    padding:10px;
-    font-size:12px;
-    .date {
-        color:#F7BE8D;
-        font-size:10px;
+@import "../../CssVariables.scss";
+
+.money-app {
+    background-color: $dark-color;
+    height:100vh;
+    h1 {
+        color: $light-color;
     }
-    .amount {
-        color:#F7BE8D;
+    .Movements {
+        padding:10px;
+        font-size:12px;
+        .purchase {
+            color:$light-color;
+        }
+        .date {
+            color:$light-color;
+            font-size:10px;
+        }
+        .amount {
+            color:$red-color;
+        }
     }
 }

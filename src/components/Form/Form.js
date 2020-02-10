@@ -1,4 +1,5 @@
 import React from 'react';
+import './Form.scss'
 
 const Form = ( { inputType, inputs, submitText, onSubmit, inputHandler }) => {
     return (
@@ -7,15 +8,15 @@ const Form = ( { inputType, inputs, submitText, onSubmit, inputHandler }) => {
 				{
 					inputs.map(function(input, index){
 						return (
-							<div>
-								<input type = { inputType[index] } name = { input } placeholder="Name" onChange = { inputHandler }/>
+							<div className="text-center">
+								<input type = { inputType[index] } name = { input } placeholder= { input } onChange = { inputHandler }/>
 							</div>
 						);
 					})
 				}
 
 				<div>
-					<input type="submit" placeholder="Email" value = { submitText } onClick = { onSubmit }/>
+					<input type="submit" value = { submitText } onClick = { onSubmit }/>
 				</div>
 			</form>
         </div>

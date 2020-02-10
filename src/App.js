@@ -94,7 +94,7 @@ function App() {
 					<Signin />
 				</Route>
 				<Route path="/money-app">
-					<div className="appContainer">
+					<div className="appContainer money-app">
 						<div className="container p-0">
 							<div className="row">
 								<div className="col-12 text-center text-light">
